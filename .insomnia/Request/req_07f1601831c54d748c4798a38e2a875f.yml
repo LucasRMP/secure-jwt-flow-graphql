@@ -1,0 +1,26 @@
+_id: req_07f1601831c54d748c4798a38e2a875f
+type: Request
+parentId: fld_a4a2c2bb950c49a1aa5b537a27b72f20
+modified: 1606351744364
+created: 1606346232109
+url: "{{ base_url }}"
+name: Index
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"query {\n  users{\n    id\n    email\n  }\n}"}'
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_66a67736fb0641b180a04ab9b10cbd20
+authentication: {}
+metaSortKey: -1605676895626.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

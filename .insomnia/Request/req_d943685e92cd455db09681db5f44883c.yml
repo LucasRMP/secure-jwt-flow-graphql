@@ -1,0 +1,27 @@
+_id: req_d943685e92cd455db09681db5f44883c
+type: Request
+parentId: fld_a4a2c2bb950c49a1aa5b537a27b72f20
+modified: 1606346221151
+created: 1606344604287
+url: "{{ base_url }}"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"mutation {\n  register(email: \"lucas@rmp.codes\", password:
+    \"123\")\n}\n"}'
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_66a67736fb0641b180a04ab9b10cbd20
+authentication: {}
+metaSortKey: -1606345267403
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

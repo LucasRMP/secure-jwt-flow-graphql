@@ -1,0 +1,29 @@
+_id: req_62953481bac6444ea1141822d2d34369
+type: Request
+parentId: fld_a4a2c2bb950c49a1aa5b537a27b72f20
+modified: 1606350793828
+created: 1606350128256
+url: "{{ base_url }}"
+name: Test authentication
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"query {\n  testAuthentication\n}"}'
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_66a67736fb0641b180a04ab9b10cbd20
+authentication:
+  type: bearer
+  token: "{{ accessToken }}"
+  disabled: false
+metaSortKey: -1605175616794.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,21 @@
+_id: req_e1b620388ae14713b6a947e4e40e2406
+type: Request
+parentId: fld_a4a2c2bb950c49a1aa5b537a27b72f20
+modified: 1606351047208
+created: 1606350958805
+url: "{{ base_url_rest }}/refresh_token"
+name: Refresh Token
+description: ""
+method: POST
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1606350958805
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

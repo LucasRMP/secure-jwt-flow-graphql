@@ -1,0 +1,28 @@
+_id: req_73dfea022d2442b4944f9862e3ab2a02
+type: Request
+parentId: fld_a4a2c2bb950c49a1aa5b537a27b72f20
+modified: 1606351744784
+created: 1606346610003
+url: "{{ base_url }}"
+name: Login
+description: ""
+method: POST
+body:
+  mimeType: application/graphql
+  text: '{"query":"mutation {\n  login(\n    email:
+    \"lucas@rmp.codes\",\n    password: \"123\"\n  )
+    {\n    accessToken\n  }\n}"}'
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_66a67736fb0641b180a04ab9b10cbd20
+authentication: {}
+metaSortKey: -1605342709738.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

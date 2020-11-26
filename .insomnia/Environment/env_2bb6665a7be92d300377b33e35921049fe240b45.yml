@@ -1,0 +1,19 @@
+_id: env_2bb6665a7be92d300377b33e35921049fe240b45
+type: Environment
+parentId: wrk_a7376cd5531f44db8cbfcddf0da4434f
+modified: 1606350972762
+created: 1606344590125
+name: Base Environment
+data:
+  base_url: http://localhost:4000/graphql
+  base_url_rest: http://localhost:4000
+  accessToken: "{% response 'body', 'req_73dfea022d2442b4944f9862e3ab2a02',
+    'b64::JC5kYXRhLmxvZ2luLmFjY2Vzc1Rva2Vu::46b', 'never', 60 %}"
+dataPropertyOrder:
+  "&":
+    - base_url
+    - base_url_rest
+    - accessToken
+color: null
+isPrivate: false
+metaSortKey: 1606344590125
