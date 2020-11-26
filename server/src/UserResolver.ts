@@ -9,13 +9,16 @@ import {
   UseMiddleware,
 } from 'type-graphql'
 import { hash, compare } from 'bcrypt'
-import jwt from 'jsonwebtoken'
 
 import { User } from './entity/User'
 import { UserInputError, ValidationError } from 'apollo-server-express'
 import { ApolloContext } from './Context'
 import isAuth from './isAuth'
-import { createAccessToken } from './utils/auth'
+import {
+  createAccessToken,
+  createRefreshToken,
+  sendRefreshToken,
+} from './utils/auth'
 
 @ObjectType()
 class LoginResponse {
@@ -63,17 +66,7 @@ export class UserResolver {
       throw new ValidationError('Wrong password')
     }
 
-    const { id } = user
-
-    res.cookie(
-      'jid',
-      jwt.sign({ userId: id }, process.env.REFRESH_TOKEN_SECRET!, {
-        expiresIn: '7d',
-      }),
-      {
-        httpOnly: true,
-      },
-    )
+    sendRefreshToken(res, createRefreshToken(user))
 
     const accessToken = createAccessToken(user)
 

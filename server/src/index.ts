@@ -11,7 +11,11 @@ import cookieParser from 'cookie-parser'
 import { UserResolver } from './UserResolver'
 import { verify } from 'jsonwebtoken'
 import { User } from './entity/User'
-import { createAccessToken } from './utils/auth'
+import {
+  createAccessToken,
+  createRefreshToken,
+  sendRefreshToken,
+} from './utils/auth'
 
 async function init() {
   await createConnection()
@@ -20,7 +24,7 @@ async function init() {
   app.use(cookieParser())
 
   app.post('/refresh_token', async (req, res) => {
-    const token = req.cookies.jid
+    const token = req.cookies.rmp
 
     if (!token) {
       return res.json({ ok: false, accessToken: '' })
@@ -39,6 +43,8 @@ async function init() {
     if (!user) {
       return res.json({ ok: false, accessToken: '' })
     }
+
+    sendRefreshToken(res, createRefreshToken(user))
 
     return res.json({ ok: true, accessToken: createAccessToken(user) })
   })
