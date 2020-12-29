@@ -14,4 +14,10 @@ export class User extends BaseEntity {
 
   @Column()
   password: string
+
+  @Field() //! Test pruposes, this should not be a field
+  @Column('int', {
+    default: 0,
+  })
+  tokenVersion: number
 }

@@ -1,0 +1,52 @@
+{
+  "name": "@jwt-auth/web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.2.9",
+    "@apollo/react-hooks": "^3.1.1",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "apollo-link-token-refresh": "^0.3.2",
+    "graphql": "^14.5.6",
+    "jwt-decode": "^3.1.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "4.0.1",
+    "typescript": "^4.0.3",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "gen": "graphql-codegen --config codegen.yml"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.19.3",
+    "@graphql-codegen/typescript": "1.18.1",
+    "@graphql-codegen/typescript-operations": "1.17.12",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
+    "@types/graphql": "^14.5.0",
+    "@types/jwt-decode": "^3.1.0",
+    "@types/react-router-dom": "^4.3.5"
+  }
+}

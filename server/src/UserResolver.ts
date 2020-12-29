@@ -2,6 +2,7 @@ import {
   Arg,
   Ctx,
   Field,
+  Int,
   Mutation,
   ObjectType,
   Query,
@@ -19,11 +20,15 @@ import {
   createRefreshToken,
   sendRefreshToken,
 } from './utils/auth'
+import { verify } from 'jsonwebtoken'
 
 @ObjectType()
 class LoginResponse {
   @Field()
   accessToken: string
+
+  @Field()
+  user: User
 }
 
 @Resolver()
@@ -72,12 +77,43 @@ export class UserResolver {
 
     return {
       accessToken,
+      user,
     }
   }
 
-  @Query(() => String)
+  @Mutation(() => Boolean) //! Test pruposes, this should not be public
+  async revokeRefreshTokenForUser(@Arg('userId', () => Int) userId: number) {
+    await User.getRepository().increment({ id: userId }, 'tokenVersion', 1)
+    return true
+  }
+
+  @Query(() => String) //! Test pruposes, this should not exist
   @UseMiddleware(isAuth)
   async testAuthentication(@Ctx() ctx: ApolloContext): Promise<String> {
     return ctx.payload!.userId
+  }
+
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() ctx: ApolloContext) {
+    const authorization = ctx.req.headers['authorization']
+
+    if (!authorization) {
+      return null
+    }
+
+    const [bearer, token] = authorization.split(' ')
+
+    if (bearer.toLowerCase() !== 'bearer') {
+      return null
+    }
+
+    try {
+      const payload: any = verify(token, process.env.ACCESS_TOKEN_SECRET!)
+      const user = await User.findOne(payload.userId)
+      return user
+    } catch (err) {
+      console.log(err)
+      return null
+    }
   }
 }

@@ -7,6 +7,7 @@ import { ApolloServer } from 'apollo-server-express'
 import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 import { UserResolver } from './UserResolver'
 import { verify } from 'jsonwebtoken'
@@ -21,9 +22,16 @@ async function init() {
   await createConnection()
 
   const app = express()
+  app.use(
+    cors({
+      origin: process.env.WEB_APP_URL,
+      credentials: true,
+    }),
+  )
   app.use(cookieParser())
 
   app.post('/refresh_token', async (req, res) => {
+    console.log('refreshing token')
     const token = req.cookies.rmp
 
     if (!token) {
@@ -40,7 +48,7 @@ async function init() {
 
     const user = await User.findOne({ where: { id: payload.userId } })
 
-    if (!user) {
+    if (!user || user.tokenVersion !== payload.tokenVersion) {
       return res.json({ ok: false, accessToken: '' })
     }
 
@@ -60,7 +68,7 @@ async function init() {
     }),
   })
 
-  server.applyMiddleware({ app })
+  server.applyMiddleware({ app, cors: false })
 
   const port = process.env.PORT || 4000
   app.listen(port, () => {
